@@ -6,105 +6,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- DIV étoiles générées par JS -->
+  <!-- Fond étoiles -->
   <div class="stars"></div>
 
   <h1>Ma Galerie Astrophotographie</h1>
 
   <div class="gallery"></div>
 
-  <!-- Mini-lightbox -->
+  <!-- Lightbox -->
   <div id="lightbox-overlay" onclick="closeLightbox()">
     <img id="lightbox-image" src="">
   </div>
 
-  <!-- JS -->
-  <script>
-    // =============================
-    // Générer des étoiles aléatoires colorées
-    // =============================
-    const starsContainer = document.querySelector('.stars');
-    const STAR_COUNT = 300; // ajustable : nombre d'étoiles
-    const colors = ['#ff4500', '#ff8c00', '#ffffe0', '#ffffff', '#add8e6']; // rouge, orange, jaune clair, blanc, bleu clair
+  <!-- JS des photos -->
+  <script src="photos.js"></script>
 
-    for (let i = 0; i < STAR_COUNT; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-
-      // position aléatoire
-      star.style.top = Math.random() * 100 + '%';
-      star.style.left = Math.random() * 100 + '%';
-
-      // taille aléatoire
-      const size = Math.random() * 2 + 1;
-      star.style.width = size + 'px';
-      star.style.height = size + 'px';
-
-      // couleur aléatoire
-      star.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-      // opacité aléatoire
-      star.style.opacity = Math.random();
-
-      // animation de scintillement aléatoire
-      star.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      star.style.animationDelay = Math.random() * 5 + 's';
-
-      starsContainer.appendChild(star);
-    }
-
-    // =============================
-    // Générer la galerie dynamiquement
-    // =============================
-    const gallery = document.querySelector('.gallery');
-    const photos = [
-      'IC1318A_RGB.jpg',
-      'IC1805_SHO.jpg',
-      'M31.jpg',
-      'NGC6883_RGB.jpg',
-      'NGC6888_SHO.jpg',
-      'SH2-119.jpg',
-      'SH2-135.jpg',
-      'SH2-157_SHO.jpg'
-      // Ajoute ici tes nouvelles photos en ajoutant juste le nom du fichier
-    ];
-
-    photos.forEach(name => {
-      const div = document.createElement('div');
-      div.className = 'photo';
-      div.innerHTML = `
-        <a href="images/${name}" class="lightbox">
-          <img src="images/${name}" alt="${name}">
-        </a>
-        <div class="caption">${name}</div>
-      `;
-      gallery.appendChild(div);
-    });
-
-    // =============================
-    // Lightbox
-    // =============================
-    function setupLightbox() {
-      const lightboxLinks = document.querySelectorAll('.lightbox');
-      const lightboxOverlay = document.getElementById('lightbox-overlay');
-      const lightboxImage = document.getElementById('lightbox-image');
-
-      lightboxLinks.forEach(link => {
-        link.addEventListener('click', e => {
-          e.preventDefault();
-          lightboxImage.src = link.href;
-          lightboxOverlay.style.display = 'flex';
-        });
-      });
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox-overlay').style.display = 'none';
-      document.getElementById('lightbox-image').src = '';
-    }
-
-    // Setup lightbox après génération de la galerie
-    setupLightbox();
-  </script>
+  <!-- JS principal -->
+  <script src="gallery.js"></script>
 </body>
 </html>
