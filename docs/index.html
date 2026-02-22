@@ -90,10 +90,12 @@
     }
 
     // =============================
-    // Générer des étoiles aléatoires
+    // Générer des étoiles aléatoires avec couleurs réalistes
     // =============================
     const starsContainer = document.querySelector('.stars');
-    const STAR_COUNT = 300; // ajustable : nombre d'étoiles
+    const STAR_COUNT = 300; // nombre d'étoiles
+
+    const colors = ['#ff4500', '#ff8c00', '#ffffe0', '#ffffff', '#add8e6']; // rouge, orange, jaune clair, blanc, bleu clair
 
     for (let i = 0; i < STAR_COUNT; i++) {
       const star = document.createElement('div');
@@ -107,6 +109,9 @@
       const size = Math.random() * 2 + 1; // 1px à 3px
       star.style.width = size + 'px';
       star.style.height = size + 'px';
+
+      // couleur aléatoire
+      star.style.background = colors[Math.floor(Math.random() * colors.length)];
 
       // opacité aléatoire
       star.style.opacity = Math.random();
