@@ -111,16 +111,3 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 0 30px #1e90ff;
 }
-
-/* ============================= */
-/* VISITOR BADGE BOTTOM-LEFT */
-/* ============================= */
-#visitor-badge-container {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  z-index: 1000;
-}
-#visitor-badge-container img {
-  height: 25px; /* taille du badge */
-}
