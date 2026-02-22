@@ -1,14 +1,26 @@
+/* Fond cosmos animé */
 body {
-  background-color: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
   margin: 0;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000 100%);
+  background-image: url('https://i.imgur.com/f4Lk5fZ.png'); /* étoilettes subtiles */
+  background-repeat: repeat;
+  background-size: contain;
+  animation: starMove 200s linear infinite;
+}
+
+/* Animation étoiles */
+@keyframes starMove {
+  0% {background-position: 0 0;}
+  100% {background-position: 10000px 10000px;}
 }
 
 h1 {
   margin-bottom: 30px;
+  text-shadow: 0 0 10px #1e90ff;
 }
 
 .gallery {
@@ -18,15 +30,27 @@ h1 {
   gap: 20px;
 }
 
-.gallery img {
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo img {
   max-width: 300px;
   border-radius: 10px;
   border: 2px solid #fff;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
-  border-color: #1e90ff;
+.photo img:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 0 20px #1e90ff;
   cursor: pointer;
+}
+
+.caption {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #1e90ff;
 }
