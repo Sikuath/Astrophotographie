@@ -2,13 +2,36 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Galerie Astrophotographie</title>
+  
+  <!-- Responsive mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO principal -->
+  <title>Astrophotographie – Galerie de photos du ciel profond</title>
+  <meta name="description" content="Galerie d’astrophotographie : nébuleuses, galaxies et ciel profond capturés depuis la France. Photos en haute résolution et traitement détaillé.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://sikuath.github.io/Astrophotographie/">
+
+  <!-- Open Graph (partage réseaux sociaux) -->
+  <meta property="og:title" content="Galerie Astrophotographie">
+  <meta property="og:description" content="Découvrez mes photos de nébuleuses, galaxies et objets du ciel profond.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sikuath.github.io/Astrophotographie/">
+  <meta property="og:image" content="https://sikuath.github.io/Astrophotographie/preview.jpg">
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Ma Galerie Astrophotographie</h1>
 
-  <div class="gallery"></div>
+<body>
+  <header>
+    <h1>Galerie d’Astrophotographie</h1>
+    <p>Photos du ciel profond : nébuleuses, galaxies et amas stellaires</p>
+  </header>
+
+  <main>
+    <div class="gallery"></div>
+  </main>
 
   <!-- JS des photos -->
   <script src="photos.js"></script>
@@ -16,15 +39,21 @@
   <!-- JS principal -->
   <script src="gallery.js"></script>
 
-  <!-- Compteur de visiteurs gratuit -->
-  <div id="visitor-counter-container">
-    <div id="sfcpybja1k1yt82cn7zyk7k47lagcbncr3q"></div>
-    <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=pybja1k1yt82cn7zyk7k47lagcbncr3q&down=async" async></script>
-    <noscript>
-      <a href="https://www.compteurdevisite.com" title="widget compteur de visites gratuit">
-        <img src="https://counter1.optistats.ovh/private/compteurdevisite.php?c=pybja1k1yt82cn7zyk7k47lagcbncr3q" border="0" title="widget compteur de visites gratuit" alt="widget compteur de visites gratuit">
-      </a>
-    </noscript>
-  </div>
+  <!-- Compteur de visiteurs -->
+  <footer>
+    <div id="visitor-counter-container">
+      <div id="sfcpybja1k1yt82cn7zyk7k47lagcbncr3q"></div>
+      <script type="text/javascript"
+        src="https://counter1.optistats.ovh/private/counter.js?c=pybja1k1yt82cn7zyk7k47lagcbncr3q&down=async"
+        async></script>
+      <noscript>
+        <a href="https://www.compteurdevisite.com" title="widget compteur de visites gratuit">
+          <img src="https://counter1.optistats.ovh/private/compteurdevisite.php?c=pybja1k1yt82cn7zyk7k47lagcbncr3q"
+               alt="compteur de visites">
+        </a>
+      </noscript>
+    </div>
+  </footer>
+
 </body>
 </html>
