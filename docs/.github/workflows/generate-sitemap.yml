@@ -1,9 +1,10 @@
 name: Generate Sitemap
 
+# Déclenchement : chaque push sur photos.js
 on:
   push:
     paths:
-      - 'docs/photos.js'   # déclenche seulement si photos.js change
+      - 'docs/photos.js'
 
 jobs:
   build:
@@ -19,15 +20,9 @@ jobs:
         node-version: '20'
 
     - name: Generate sitemap
-      run: |
-        cd docs
-        node generate-sitemap.js
+      working-directory: docs   # important ! on se place dans docs/
+      run: node generate-sitemap.js
 
-    - name: Commit sitemap
-      run: |
-        cd docs
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git add sitemap.xml
-        git commit -m "Auto-generate sitemap.xml" || echo "No changes to commit"
-        git push
+    - name: Show sitemap preview
+      working-directory: docs
+      run: cat sitemap.xml
