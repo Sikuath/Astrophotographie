@@ -1,4 +1,4 @@
-site https://sikuath.github.io/Astrophotographie/
+https://sikuath.github.io/Astrophotographie/
 
 Ajouter une photo à la galerie
 
