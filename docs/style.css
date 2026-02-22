@@ -8,18 +8,18 @@ body {
   color: white;
   text-align: center;
 
-  /* Dégradé noir profond */
+  /* Fond noir profond + étoiles CSS */
   background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000000 100%);
-
-  /* Etoiles générées avec CSS radial-gradient */
   background-image: 
     radial-gradient(white 1px, transparent 1px),
     radial-gradient(white 1px, transparent 1px);
   background-size: 50px 50px, 100px 100px;
   background-position: 0 0, 25px 50px;
-
-  /* Animation subtile des étoiles */
   animation: starsMove 200s linear infinite;
+
+  /* Optionnel : si tu veux utiliser ton image background.jpg, décommente ci-dessous */
+  /* background: url('images/background.jpg') no-repeat center center fixed; */
+  /* background-size: cover; */
 }
 
 @keyframes starsMove {
