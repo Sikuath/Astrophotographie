@@ -1,5 +1,5 @@
 /* ============================= */
-/* FOND COSMOS ANIMÉ */
+/* FOND COSMOS ANIMÉ (100% CSS) */
 /* ============================= */
 body {
   margin: 0;
@@ -8,21 +8,20 @@ body {
   color: white;
   text-align: center;
 
-  /* Dégradé noir + bleu foncé */
+  /* Dégradé noir profond */
   background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000000 100%);
 
-  /* Etoiles générées en CSS */
+  /* Etoiles générées avec radial-gradient */
   background-image: 
     radial-gradient(white 1px, transparent 1px),
     radial-gradient(white 1px, transparent 1px);
   background-size: 50px 50px, 100px 100px;
   background-position: 0 0, 25px 50px;
 
-  /* Animation étoiles */
+  /* Animation subtile des étoiles */
   animation: starsMove 200s linear infinite;
 }
 
-/* Animation déplacement des étoiles */
 @keyframes starsMove {
   0% {background-position: 0 0, 25px 50px;}
   100% {background-position: -1000px 1000px, 25px -1000px;}
@@ -46,16 +45,12 @@ h1 {
   gap: 20px;
 }
 
-/* Chaque photo avec légende */
 .photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ============================= */
-/* THUMBNAILS + EFFET HOVER */
-/* ============================= */
 .photo img {
   max-width: 300px;
   border-radius: 10px;
@@ -69,9 +64,6 @@ h1 {
   cursor: pointer;
 }
 
-/* ============================= */
-/* LÉGENDE SOUS CHAQUE IMAGE */
-/* ============================= */
 .caption {
   margin-top: 5px;
   font-size: 14px;
