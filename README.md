@@ -4,7 +4,7 @@ La galerie utilise un fichier JavaScript minimaliste (photos.js) qui contient un
 
 1️⃣ Placer le fichier image
 
-Mets ton image dans le dossier images/ de la galerie.
+Mets ton image dans le dossier docs/images
 
 Exemple : images/NGC7000.jpg
 
@@ -21,7 +21,7 @@ const photos = [
   // autres fichiers…
 ];
 
-Ajoute simplement le nom de ton fichier à la fin :
+Ajoute simplement le nom de ton fichier à la fin et ne pas oublier la virgule à l'avant dernier fichier!
 
 const photos = [
   'IC1318A_RGB.jpg',
@@ -30,7 +30,6 @@ const photos = [
   'NGC7000.jpg' // nouvelle photo
 ];
 
-⚡ Astuce : garde les noms cohérents, sans espaces, et utilise des underscores _ si nécessaire.
 
 3️⃣ Vérification
 
