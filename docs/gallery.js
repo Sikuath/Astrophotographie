@@ -64,14 +64,9 @@ photos.forEach(photo => {
 });
 
 // =============================
-// COMPTEUR VISITEURS COUNTAPI
+// VISITOR BADGE (IMAGE)
 // =============================
-const countEl = document.getElementById('visitor-count');
-
-// Remplace 'mon-site' et 'compteur' par un identifiant unique
-fetch('https://api.countapi.xyz/hit/yoye-galerie/visiteurs')
-  .then(res => res.json())
-  .then(data => {
-    countEl.textContent = data.value;
-  })
-  .catch(err => console.log('Erreur compteur :', err));
+const badgeContainer = document.createElement('div');
+badgeContainer.id = 'visitor-badge-container';
+badgeContainer.innerHTML = `<img src="https://visitor-badge.glitch.me/badge?page_id=Yoye.Torn" alt="Visiteurs">`;
+document.body.appendChild(badgeContainer);
