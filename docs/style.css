@@ -39,7 +39,7 @@ body {
 /* TITRE DYNAMIQUE BLEU */
 /* ============================= */
 h1 {
-  color: #1e90ff !important; /* force le bleu */
+  color: #1e90ff !important;
   font-size: 3em;
   text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 20px #1e90ff;
   animation: glow 2s ease-in-out infinite, floatTitle 3s ease-in-out infinite;
@@ -110,4 +110,20 @@ h1 {
   max-height: 90%;
   border-radius: 10px;
   box-shadow: 0 0 30px #1e90ff;
+}
+
+/* ============================= */
+/* COMPTEUR OPTISTATS EN BAS À GAUCHE */
+/* ============================= */
+#visitor-counter-container {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1000;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+#visitor-counter-container img {
+  height: 25px;
 }
