@@ -113,17 +113,14 @@ h1 {
 }
 
 /* ============================= */
-/* COMPTEUR BOTTOM-LEFT */
+/* VISITOR BADGE BOTTOM-LEFT */
 /* ============================= */
-#visitor-counter {
+#visitor-badge-container {
   position: fixed;
   bottom: 10px;
   left: 10px;
-  font-size: 14px;
-  color: #1e90ff;
-  background: rgba(0,0,0,0.5);
-  padding: 5px 10px;
-  border-radius: 5px;
   z-index: 1000;
-  font-family: Arial, sans-serif;
+}
+#visitor-badge-container img {
+  height: 25px; /* taille du badge */
 }
