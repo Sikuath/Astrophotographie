@@ -1,4 +1,4 @@
-// Liste des photos de la galerie
+// Liste des photos de la galerie mise à jour automatique
 
 const photos = [
   {
