@@ -24,26 +24,38 @@ for(let i=0;i<STAR_COUNT;i++){
 }
 
 // =============================
-// GALERIE DYNAMIQUE
+// GALERIE DYNAMIQUE (SEO amélioré)
 // =============================
 const galleryContainer = document.querySelector('.gallery');
+
 photos.forEach(photo => {
-  const div = document.createElement('div');
+
+  const div = document.createElement('figure');
   div.classList.add('photo');
 
   const img = document.createElement('img');
   img.src = `images/${photo}`;
-  img.alt = photo;
+  
+  // SEO : transformer le nom fichier en texte lisible
+  const cleanName = photo
+    .replace(/\.[^/.]+$/, "")   // enlever extension
+    .replace(/[-_]/g, " ");     // remplacer - et _ par espace
 
-  const caption = document.createElement('div');
+  img.alt = `Astrophotographie de ${cleanName}`;
+  img.loading = "lazy";   // performance
+  img.decoding = "async";
+
+  const caption = document.createElement('figcaption');
   caption.classList.add('caption');
-  caption.textContent = photo;
+  caption.textContent = cleanName;
 
   div.appendChild(img);
   div.appendChild(caption);
   galleryContainer.appendChild(div);
 
+  // =============================
   // LIGHTBOX
+  // =============================
   img.addEventListener('click', () => {
     let overlay = document.getElementById('lightbox-overlay');
     if(!overlay){
@@ -52,13 +64,16 @@ photos.forEach(photo => {
       document.body.appendChild(overlay);
     }
     overlay.innerHTML = '';
+
     const largeImg = document.createElement('img');
     largeImg.src = img.src;
+    largeImg.alt = img.alt;
+
     overlay.appendChild(largeImg);
     overlay.style.display = 'flex';
 
-    overlay.addEventListener('click', () => {
+    overlay.onclick = () => {
       overlay.style.display = 'none';
-    });
+    };
   });
 });
