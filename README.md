@@ -1,3 +1,5 @@
+site https://sikuath.github.io/Astrophotographie/
+
 Ajouter une photo à la galerie
 
 La galerie utilise un fichier JavaScript minimaliste (photos.js) qui contient uniquement la liste des fichiers. Tu n’as jamais besoin de toucher index.html.
