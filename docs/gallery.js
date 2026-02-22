@@ -62,11 +62,3 @@ photos.forEach(photo => {
     });
   });
 });
-
-// =============================
-// VISITOR BADGE (IMAGE)
-// =============================
-const badgeContainer = document.createElement('div');
-badgeContainer.id = 'visitor-badge-container';
-badgeContainer.innerHTML = `<img src="https://visitor-badge.glitch.me/badge?page_id=Yoye.Torn" alt="Visiteurs">`;
-document.body.appendChild(badgeContainer);
