@@ -1,8 +1,14 @@
 body {
   background-color: #000;
-  color: white;
+  color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
 }
 
 .gallery {
@@ -13,11 +19,14 @@ body {
 }
 
 .gallery img {
-  max-width: 400px;
+  max-width: 300px;
   border-radius: 10px;
+  border: 2px solid #fff;
   transition: transform 0.3s;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
+  border-color: #1e90ff;
+  cursor: pointer;
 }
