@@ -1,4 +1,4 @@
-// Liste des photos de la galerie (version SEO optimisée)
+// Liste des photos de la galerie
 
 const photos = [
   {
