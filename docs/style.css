@@ -1,6 +1,4 @@
-/* ============================= */
-/* FOND COSMOS ANIMÉ (100% CSS) */
-/* ============================= */
+/* FOND COSMOS ANIMÉ */
 body {
   margin: 0;
   padding: 20px;
@@ -11,7 +9,7 @@ body {
   /* Dégradé noir profond */
   background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000000 100%);
 
-  /* Etoiles générées avec radial-gradient */
+  /* Etoiles générées avec radial-gradient CSS */
   background-image: 
     radial-gradient(white 1px, transparent 1px),
     radial-gradient(white 1px, transparent 1px);
@@ -27,17 +25,13 @@ body {
   100% {background-position: -1000px 1000px, 25px -1000px;}
 }
 
-/* ============================= */
-/* TITRE DE LA GALERIE */
-/* ============================= */
+/* TITRE */
 h1 {
   margin-bottom: 30px;
   text-shadow: 0 0 10px #1e90ff;
 }
 
-/* ============================= */
 /* GRILLE DES IMAGES */
-/* ============================= */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -45,12 +39,14 @@ h1 {
   gap: 20px;
 }
 
+/* CHAQUE PHOTO */
 .photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* THUMBNAILS + EFFET HOVER */
 .photo img {
   max-width: 300px;
   border-radius: 10px;
@@ -64,6 +60,7 @@ h1 {
   cursor: pointer;
 }
 
+/* LÉGENDE */
 .caption {
   margin-top: 5px;
   font-size: 14px;
