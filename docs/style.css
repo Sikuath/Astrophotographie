@@ -12,6 +12,7 @@ body {
   overflow: hidden;
 }
 
+/* Conteneur pour étoiles */
 .stars {
   position: fixed;
   top:0; left:0;
@@ -34,13 +35,29 @@ body {
   100% { opacity: 0.3; transform: scale(0.5); }
 }
 
-/* TITRE */
+/* ============================= */
+/* TITRE DYNAMIQUE BLEU */
+/* ============================= */
 h1 {
-  margin-bottom: 30px;
-  text-shadow: 0 0 10px #1e90ff;
+  color: #1e90ff; /* bleu */
+  font-size: 3em;
+  text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 20px #1e90ff;
+  animation: glow 2s ease-in-out infinite, floatTitle 3s ease-in-out infinite;
 }
 
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 20px #1e90ff; }
+  50% { text-shadow: 0 0 20px #1e90ff, 0 0 40px #1e90ff, 0 0 60px #1e90ff; }
+}
+
+@keyframes floatTitle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ============================= */
 /* GRILLE DES IMAGES */
+/* ============================= */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -74,7 +91,9 @@ h1 {
   color: #1e90ff;
 }
 
+/* ============================= */
 /* MINI-LIGHTBOX */
+/* ============================= */
 #lightbox-overlay {
   display: none;
   position: fixed;
