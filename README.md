@@ -2,13 +2,13 @@ Ajouter une photo à la galerie
 
 La galerie utilise un fichier JavaScript minimaliste (photos.js) qui contient uniquement la liste des fichiers. Tu n’as jamais besoin de toucher index.html.
 
-1️⃣ Placer le fichier image
+1️⃣ **Placer le fichier image**
 
 Mets ton image dans le dossier docs/images
 
 Exemple : images/NGC7000.jpg
 
-2️⃣ Ajouter la photo dans photos.js
+2️⃣ **Ajouter la photo dans photos.js**
 
 Ouvre photos.js.
 
@@ -21,7 +21,7 @@ const photos = [
   // autres fichiers…
 ];
 
-Ajoute simplement le nom de ton fichier à la fin et ne pas oublier la virgule à l'avant dernier fichier!
+**Ajoute simplement le nom de ton fichier à la fin et ne pas oublier la virgule à l'avant dernier fichier!**
 
 const photos = [
   'IC1318A_RGB.jpg',
@@ -31,7 +31,7 @@ const photos = [
 ];
 
 
-3️⃣ Vérification
+3️⃣ **Vérification**
 
 Tu n’as rien à modifier dans index.html.
 
@@ -39,7 +39,7 @@ La galerie se mettra à jour automatiquement avec la nouvelle photo.
 
 Le lightbox, la légende et les étoiles colorées fonctionnent immédiatement.
 
-4️⃣ Ajouter plusieurs photos en une fois
+4️⃣ **Ajouter plusieurs photos en une fois**
 
 Ajoute juste chaque fichier comme nouvel élément dans le tableau photos :
 
