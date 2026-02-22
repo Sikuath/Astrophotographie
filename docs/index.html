@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- DIV pour étoiles -->
+  <!-- DIV étoiles générées par JS -->
   <div class="stars"></div>
 
   <h1>Ma Galerie Astrophotographie</h1>
@@ -67,7 +67,11 @@
     <img id="lightbox-image" src="">
   </div>
 
+  <!-- JS -->
   <script>
+    // =============================
+    // Lightbox
+    // =============================
     const lightboxLinks = document.querySelectorAll('.lightbox');
     const lightboxOverlay = document.getElementById('lightbox-overlay');
     const lightboxImage = document.getElementById('lightbox-image');
@@ -83,6 +87,35 @@
     function closeLightbox() {
       lightboxOverlay.style.display = 'none';
       lightboxImage.src = '';
+    }
+
+    // =============================
+    // Générer des étoiles aléatoires
+    // =============================
+    const starsContainer = document.querySelector('.stars');
+    const STAR_COUNT = 300; // ajustable : nombre d'étoiles
+
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+
+      // position aléatoire
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+
+      // taille aléatoire
+      const size = Math.random() * 2 + 1; // 1px à 3px
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+
+      // opacité aléatoire
+      star.style.opacity = Math.random();
+
+      // animation de scintillement aléatoire
+      star.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      star.style.animationDelay = Math.random() * 5 + 's';
+
+      starsContainer.appendChild(star);
     }
   </script>
 </body>
