@@ -8,6 +8,6 @@ const photos = [
   'SH2-119.jpg',
   'SH2-135.jpg',
   'SH2-157_SHO.jpg'
-  'background.jpg'
+  'Background.jpg'
   // Ajoute ici de nouvelles photos en ajoutant juste le nom du fichier
 ];
