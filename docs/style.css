@@ -1,28 +1,44 @@
-/* Fond cosmos animé */
+/* ============================= */
+/* FOND COSMOS ANIMÉ */
+/* ============================= */
 body {
   margin: 0;
   padding: 20px;
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
-  background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000 100%);
-  background-image: url('https://i.imgur.com/f4Lk5fZ.png'); /* étoilettes subtiles */
-  background-repeat: repeat;
-  background-size: contain;
-  animation: starMove 200s linear infinite;
+
+  /* Dégradé noir + bleu foncé */
+  background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000000 100%);
+
+  /* Etoiles générées en CSS */
+  background-image: 
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px, 100px 100px;
+  background-position: 0 0, 25px 50px;
+
+  /* Animation étoiles */
+  animation: starsMove 200s linear infinite;
 }
 
-/* Animation étoiles */
-@keyframes starMove {
-  0% {background-position: 0 0;}
-  100% {background-position: 10000px 10000px;}
+/* Animation déplacement des étoiles */
+@keyframes starsMove {
+  0% {background-position: 0 0, 25px 50px;}
+  100% {background-position: -1000px 1000px, 25px -1000px;}
 }
 
+/* ============================= */
+/* TITRE DE LA GALERIE */
+/* ============================= */
 h1 {
   margin-bottom: 30px;
   text-shadow: 0 0 10px #1e90ff;
 }
 
+/* ============================= */
+/* GRILLE DES IMAGES */
+/* ============================= */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -30,12 +46,16 @@ h1 {
   gap: 20px;
 }
 
+/* Chaque photo avec légende */
 .photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* ============================= */
+/* THUMBNAILS + EFFET HOVER */
+/* ============================= */
 .photo img {
   max-width: 300px;
   border-radius: 10px;
@@ -49,6 +69,9 @@ h1 {
   cursor: pointer;
 }
 
+/* ============================= */
+/* LÉGENDE SOUS CHAQUE IMAGE */
+/* ============================= */
 .caption {
   margin-top: 5px;
   font-size: 14px;
