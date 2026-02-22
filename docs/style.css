@@ -1,5 +1,5 @@
 /* ============================= */
-/* FOND COSMOS ANIMÉ (étoiles CSS) */
+/* FOND COSMOS NOIR AVEC ÉTOILES ALÉATOIRES */
 /* ============================= */
 body {
   margin: 0;
@@ -18,26 +18,58 @@ body {
   top:0; left:0;
   width:100%;
   height:100%;
-  background-image: radial-gradient(white 1px, transparent 1px),
-                    radial-gradient(white 1px, transparent 1px);
-  background-size: 50px 50px, 100px 100px;
-  background-position: 0 0, 25px 50px;
-  animation: starsMove 200s linear infinite;
   z-index: -1;
+  overflow: hidden;
 }
 
-@keyframes starsMove {
-  0% { background-position: 0 0, 25px 50px; }
-  100% { background-position: -1000px 1000px, 25px -1000px; }
+/* Création des étoiles via box-shadow */
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow:
+    50px 120px white,
+    80px 300px white,
+    150px 50px white,
+    200px 250px white,
+    250px 400px white,
+    300px 180px white,
+    350px 320px white,
+    400px 90px white,
+    450px 210px white,
+    500px 360px white,
+    550px 150px white,
+    600px 300px white,
+    650px 100px white,
+    700px 250px white,
+    750px 400px white,
+    800px 50px white,
+    850px 200px white,
+    900px 350px white,
+    950px 120px white,
+    1000px 300px white;
+  animation: starsTwinkle 20s linear infinite;
 }
 
-/* TITRE */
+/* Scintillement subtil */
+@keyframes starsTwinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+/* ============================= */
+/* TITRE DE LA GALERIE */
+/* ============================= */
 h1 {
   margin-bottom: 30px;
   text-shadow: 0 0 10px #1e90ff;
 }
 
+/* ============================= */
 /* GRILLE DES IMAGES */
+/* ============================= */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -71,6 +103,7 @@ h1 {
   color: #1e90ff;
 }
 
+/* ============================= */
 /* MINI-LIGHTBOX */
 #lightbox-overlay {
   display: none;
