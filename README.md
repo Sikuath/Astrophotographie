@@ -4,54 +4,58 @@ Ajouter une photo à la galerie
 
 La galerie utilise un fichier JavaScript minimaliste (photos.js) qui contient uniquement la liste des fichiers. Tu n’as jamais besoin de toucher index.html.
 
-1️⃣ **Placer le fichier image**
+1 **Placer le fichier image**
 
 Mets ton image dans le dossier docs/images
 
 Exemple : images/NGC7000.jpg
 
-2️⃣ **Ajouter la photo dans photos.js**
+2  **Ajouter la photo dans photos.js**
 
-Ouvre photos.js.
+Copier vos nouvelles photos dans le dossier images/ :
 
-Tu verras un tableau photos contenant tous les noms de fichiers existants :
+cp /chemin/vers/nouvelle_photo.jpg ~/Astrophotographie/docs/images/
 
-const photos = [
-  'IC1318A_RGB.jpg',
-  'IC1805_SHO.jpg',
-  'M31.jpg'
-  // autres fichiers…
-];
+Ajouter les informations de la photo dans photos.js :
 
-**Ajoute simplement le nom de ton fichier à la fin et ne pas oublier la virgule à l'avant dernier fichier!**
+{
+  file: "nouvelle_photo.jpg",
+  title: "Nom complet de l'objet",
+  type: "Type astronomique",
+  constellation: "Constellation",
+  processing: "RGB / SHO / etc."
+}
 
-const photos = [
-  'IC1318A_RGB.jpg',
-  'IC1805_SHO.jpg',
-  'M31.jpg',
-  'NGC7000.jpg' // nouvelle photo
-];
+Ajouter un nouvel objet à la fin du tableau photos.
+**Ne pas oublier la virgule à l'avant dernier fichier!**
 
+3  **Régénérer le sitemap**
 
-3️⃣ **Vérification**
+Dans le dossier docs :
 
-Tu n’as rien à modifier dans index.html.
+cd ~/Astrophotographie/docs
+node generate-sitemap.js
 
-La galerie se mettra à jour automatiquement avec la nouvelle photo.
+Vérifiez que sitemap.xml est bien créé ou mis à jour :
 
-Le lightbox, la légende et les étoiles colorées fonctionnent immédiatement.
+ls -l sitemap.xml
+cat sitemap.xml
 
-4️⃣ **Ajouter plusieurs photos en une fois**
+4 **Commit et push vers Github**
 
-Ajoute juste chaque fichier comme nouvel élément dans le tableau photos :
+Ajouter les fichiers modifiés :
 
-const photos = [
-  'IC1318A_RGB.jpg',
-  'IC1805_SHO.jpg',
-  'M31.jpg',
-  'NGC7000.jpg',
-  'NGC6999.jpg',
-  'NGC7023.jpg'
-];
+git add photos.js sitemap.xml
 
-À chaque ajout, la galerie se mettra automatiquement à jour.
+Créer un commit :
+
+git commit -m "Ajout/modification de photos et mise à jour du sitemap"
+
+Pousser vers GitHub :
+
+git push
+
+5 **Vérification**
+
+Sur GitHub, vérifier que photos.js et sitemap.xml sont à jour.
+Sur le site GitHub Pages, les nouvelles images doivent apparaître automatiquement.

@@ -1,42 +1,30 @@
+// generate-sitemap.js
+// Génère un sitemap.xml pour toutes les images de la galerie
+
 const fs = require('fs');
-const path = require('path');
+const { photos } = require('./photos.js'); // importe ton tableau d’objets
 
-// Importer photos.js
-const photos = require('./photos.js').photos || require('./photos.js');
+// URL de base de ton site GitHub Pages
+const BASE_URL = 'https://sikuath.github.io/Astrophotographie/images/';
 
-const baseUrl = 'https://sikuath.github.io/Astrophotographie/';
-const urls = [];
-
-// Page principale
-urls.push({
-  loc: baseUrl,
-  priority: 1.0,
-  changefreq: 'weekly'
-});
-
-// Ajouter chaque image
-photos.forEach(p => {
-  urls.push({
-    loc: baseUrl + 'images/' + p.file,
-    priority: 0.8,
-    changefreq: 'monthly'
-  });
-});
-
-// Générer sitemap.xml
+// Début du sitemap XML
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-sitemap += `<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-urls.forEach(u => {
+// Ajouter chaque photo
+photos.forEach(p => {
   sitemap += `  <url>\n`;
-  sitemap += `    <loc>${u.loc}</loc>\n`;
-  sitemap += `    <changefreq>${u.changefreq}</changefreq>\n`;
-  sitemap += `    <priority>${u.priority}</priority>\n`;
+  sitemap += `    <loc>${BASE_URL}${p.file}</loc>\n`;
+  sitemap += `    <lastmod>${new Date().toISOString()}</lastmod>\n`;
+  sitemap += `    <changefreq>monthly</changefreq>\n`;
+  sitemap += `    <priority>0.8</priority>\n`;
   sitemap += `  </url>\n`;
 });
 
+// Fin du sitemap
 sitemap += `</urlset>`;
 
-// Écrire sitemap.xml
-fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap, 'utf8');
-console.log('✅ sitemap.xml généré avec', urls.length, 'URLs');
+// Écriture du fichier sitemap.xml
+fs.writeFileSync('sitemap.xml', sitemap, 'utf8');
+
+console.log('✅ sitemap.xml généré avec succès !');
