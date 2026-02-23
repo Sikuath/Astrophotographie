@@ -1,4 +1,5 @@
-// Liste des photos de la galerie
+// photos.js
+// Liste des photos de la galerie avec informations complètes
 
 const photos = [
   {
@@ -58,3 +59,6 @@ const photos = [
     processing: "SHO (Hubble Palette)"
   }
 ];
+
+// Export pour Node.js (utilisé par generate-sitemap.js)
+module.exports = { photos };
