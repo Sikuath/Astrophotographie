@@ -1,61 +1,100 @@
 https://sikuath.github.io/Astrophotographie/
 
-Ajouter une photo à la galerie
+# 🌌 Astrophotographie – Galerie en ligne
 
-La galerie utilise un fichier JavaScript minimaliste (photos.js) qui contient uniquement la liste des fichiers. Tu n’as jamais besoin de toucher index.html.
+Cette galerie utilise un fichier JavaScript minimaliste (`photos.js`) contenant uniquement la liste des fichiers.
+Tu n’as **jamais besoin de modifier `index.html`** pour ajouter des photos.
 
-1 **Placer le fichier image**
+---
 
-Mets ton image dans le dossier docs/images
+## 1️⃣ Placer le fichier image
 
-Exemple : images/NGC7000.jpg
+Copie ton image dans le dossier `docs/images`.
 
-2  **Ajouter la photo dans photos.js**
+Exemple :
 
-Copier vos nouvelles photos dans le dossier images/ :
+```bash
+images/NGC7000.jpg
+```
 
+Ou depuis un autre emplacement :
+
+```bash
 cp /chemin/vers/nouvelle_photo.jpg ~/Astrophotographie/docs/images/
+```
 
-Ajouter les informations de la photo dans photos.js :
+---
 
+## 2️⃣ Ajouter la photo dans `photos.js`
+
+Chaque photo est un objet dans le tableau `photos` avec ces propriétés :
+
+- `file` : nom du fichier image  
+- `title` : nom complet de l’objet  
+- `type` : type astronomique  
+- `constellation` : constellation  
+- `processing` : traitement utilisé (RGB / SHO / etc.)
+
+Exemple d’objet à ajouter :
+
+```js
 {
   file: "nouvelle_photo.jpg",
-  title: "Nom complet de l'objet",
-  type: "Type astronomique",
-  constellation: "Constellation",
-  processing: "RGB / SHO / etc."
+  title: "NGC 7000 – Nébuleuse de l’Amérique du Nord",
+  type: "Nébuleuse en émission",
+  constellation: "Cygne",
+  processing: "RGB"
 }
+```
 
-Ajouter un nouvel objet à la fin du tableau photos.
-**Ne pas oublier la virgule à l'avant dernier fichier!**
+⚠️ Ajoute le nouvel objet **à la fin du tableau `photos`**.
+N’oublie pas la virgule après l’avant-dernier élément !
 
-3  **Régénérer le sitemap**
+---
 
-Dans le dossier docs :
+## 3️⃣ Régénérer le sitemap
 
+Dans le dossier `docs` :
+
+```bash
 cd ~/Astrophotographie/docs
 node generate-sitemap.js
+```
 
-Vérifiez que sitemap.xml est bien créé ou mis à jour :
+Vérifie que le fichier `sitemap.xml` est bien créé ou mis à jour :
 
+```bash
 ls -l sitemap.xml
 cat sitemap.xml
+```
 
-4 **Commit et push vers Github**
+---
+
+## 4️⃣ Commit et push vers GitHub
 
 Ajouter les fichiers modifiés :
 
+```bash
 git add photos.js sitemap.xml
+```
 
 Créer un commit :
 
+```bash
 git commit -m "Ajout/modification de photos et mise à jour du sitemap"
+```
 
-Pousser vers GitHub :
+Pousser sur GitHub :
 
+```bash
 git push
+```
 
-5 **Vérification**
+---
 
-Sur GitHub, vérifier que photos.js et sitemap.xml sont à jour.
-Sur le site GitHub Pages, les nouvelles images doivent apparaître automatiquement.
+## 5️⃣ Vérification
+
+1. Sur GitHub, vérifie que `photos.js` et `sitemap.xml` sont à jour.  
+2. Sur ton site GitHub Pages, les nouvelles images apparaissent automatiquement.
+
+---
