@@ -13,7 +13,7 @@ const photos = [
     file: "IC1805_SHO.jpg",
     title: "IC 1805 – Nébuleuse du Cœur",
     type: "Nébuleuse en émission",
-    constellation: "Cassiopeia",
+    constellation: "Cassiopée",
     processing: "SHO (Hubble Palette)"
   },
   {
@@ -39,24 +39,31 @@ const photos = [
   },
   {
     file: "SH2-119.jpg",
-    title: "Sh2-119 – Nébuleuse du Dauphin",
+    title: "SH2-119 – Nébuleuse du Dauphin",
     type: "Nébuleuse en émission",
     constellation: "Cygne",
-    processing: "RGB"
+    processing: "SHO (Hubble Palette)"
   },
   {
     file: "SH2-135.jpg",
-    title: "Sh2-135",
-    type: "Région HII",
+    title: "SH2-135",
+    type: "Nébuleuse en émission",
     constellation: "Céphée",
-    processing: "RGB"
+    processing: "SHO (Hubble Palette)"
   },
   {
     file: "SH2-157_SHO.jpg",
-    title: "Sh2-157 – Nébuleuse de la Griffe",
+    title: "SH2-157 – La pince de Homard",
     type: "Nébuleuse en émission",
-    constellation: "Cassiopeia",
+    constellation: "Cassiopée",
     processing: "SHO (Hubble Palette)"
+  },
+  {
+    file: "NGC2841.jpg",
+    title: "NGC 2841",
+    type: "Galaxie spirale",
+    constellation: "La grande Ourse",
+    processing: "RGB"
   }
 ];
 
