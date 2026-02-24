@@ -9,7 +9,7 @@ body {
   text-align: center;
   background: black;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Conteneur pour étoiles */
