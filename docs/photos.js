@@ -59,7 +59,7 @@ const photos = [
     processing: "SHO (Hubble Palette)"
   },
   {
-    file: "NGC2841.jpg",
+    file: "NGC2841_RGB.jpg",
     title: "NGC 2841",
     type: "Galaxie spirale",
     constellation: "La grande Ourse",
