@@ -83,33 +83,59 @@ header p {
 }
 
 .photo {
-  width: 400px;
+  width: 300px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Vignettes avec glow permanent + hover */
 .photo img {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   border-radius: 10px;
-  border: 2px solid #1e90ff; /* contour bleu complet */
+  border: 2px solid #1e90ff;
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  box-shadow: 0 0 5px #1e90ff;
 }
 
 .photo img:hover {
   transform: scale(1.05) rotate(1deg);
-  box-shadow: 0 0 20px #1e90ff;
+  box-shadow: 0 0 20px #1e90ff, 0 0 40px #1e90ff;
 }
 
-.caption {
+/* ============================= */
+/* MINI-VITRINE SOUS VIGNETTES */
+/* ============================= */
+.photo figcaption {
   margin-top: 5px;
+  padding: 8px;
   font-size: 14px;
-  color: #1e90ff; /* texte bleu dans la galerie */
-  text-align: center;
+  color: #00ffff;
+  text-align: left;
+  background: rgba(0,0,50,0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 10px #1e90ff;
+  text-shadow: 0 0 3px #1e90ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo:hover figcaption {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #1e90ff, 0 0 40px #00ffff;
+}
+
+.photo figcaption a {
+  color: #00ffff;
+  text-decoration: underline;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.photo figcaption a:hover {
+  text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
 }
 
 /* ============================= */
@@ -129,7 +155,7 @@ header p {
   visibility: hidden;
   padding: 20px;
   box-sizing: border-box;
-  backdrop-filter: blur(6px); /* flou léger fond */
+  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
 
@@ -139,10 +165,10 @@ header p {
   border-radius: 10px;
   object-fit: contain;
   opacity: 0;
-  transform: scale(0.95); /* commence plus petit */
+  transform: scale(0.95);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-/* Classe ajoutée par JS pour déclencher fade+zoom */
 #lightbox-overlay img.show {
   opacity: 1;
   transform: scale(1);
@@ -170,6 +196,29 @@ header p {
 #lightbox-overlay div > div:first-child {
   text-align: left;
   max-width: 300px;
+}
+
+#lightbox-overlay h2 {
+  color: #1e90ff;
+  text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 20px #1e90ff;
+  animation: glow 2s ease-in-out infinite;
+  margin-top: 0;
+}
+
+#lightbox-overlay p {
+  color: #1e90ff;
+  text-shadow: 0 0 2px #1e90ff;
+}
+
+#lightbox-overlay a {
+  color: #00ffff;
+  text-decoration: underline;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  transition: text-shadow 0.3s;
+}
+
+#lightbox-overlay a:hover {
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
 }
 
 /* ============================= */
