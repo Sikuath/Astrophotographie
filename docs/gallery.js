@@ -36,7 +36,7 @@ overlay.style.top = '0';
 overlay.style.left = '0';
 overlay.style.width = '100%';
 overlay.style.height = '100%';
-overlay.style.background = 'rgba(0,0,0,0.9)';
+overlay.style.background = 'rgba(0,0,0,0.92)';
 overlay.style.display = 'flex';
 overlay.style.justifyContent = 'center';
 overlay.style.alignItems = 'center';
@@ -45,15 +45,10 @@ overlay.style.cursor = 'pointer';
 overlay.style.visibility = 'hidden';
 document.body.appendChild(overlay);
 
-overlay.addEventListener('click', () => {
-  overlay.style.visibility = 'hidden';
-  overlay.innerHTML = '';
-});
-
 // =============================
-// Création de la galerie à partir de photos.js
+// Création de la galerie
 // =============================
-photos.forEach(photo => {
+photos.forEach((photo, index) => {
   const figure = document.createElement('figure');
   figure.classList.add('photo');
 
@@ -61,37 +56,98 @@ photos.forEach(photo => {
   img.src = `images/${photo.file}`;
   img.loading = "lazy";
   img.decoding = "async";
-
   img.alt = `Astrophotographie de ${photo.title}, ${photo.type} dans la constellation du ${photo.constellation}, traitement ${photo.processing}`;
 
   const caption = document.createElement('figcaption');
   caption.classList.add('caption');
-  caption.innerHTML = `
-    <strong>${photo.title}</strong><br>
-    ${photo.type} – Constellation du ${photo.constellation}<br>
-    Traitement : ${photo.processing}
-  `;
+  caption.innerHTML = `<strong>${photo.title}</strong><br>${photo.type} – Constellation du ${photo.constellation}<br>Traitement : ${photo.processing}`;
 
   figure.appendChild(img);
   figure.appendChild(caption);
   galleryContainer.appendChild(figure);
 
-  // Lightbox
   img.addEventListener('click', () => {
-    overlay.innerHTML = '';
-    const largeImg = document.createElement('img');
-    largeImg.src = img.src;
-    largeImg.alt = img.alt;
-    largeImg.style.maxWidth = '95%';
-    largeImg.style.maxHeight = '95%';
-    overlay.appendChild(largeImg);
-    overlay.style.visibility = 'visible';
+    let currentIndex = index;
+
+    function showImage(i) {
+      overlay.innerHTML = '';
+
+      // Flèches
+      const arrows = document.createElement('div');
+      arrows.classList.add('lb-arrows');
+      arrows.innerHTML = `
+        <span id="lb-prev">&#8592;</span>
+        <span id="lb-next">&#8594;</span>
+      `;
+      overlay.appendChild(arrows);
+
+      // Container image + infos
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.gap = '40px';
+      container.style.alignItems = 'center';
+      container.style.maxWidth = '90%';
+      container.style.maxHeight = '90%';
+
+      const info = document.createElement('div');
+      info.style.color = '#1e90ff';
+      info.style.maxWidth = '300px';
+      info.innerHTML = `<h2 style="margin-top:0;">${photos[i].title}</h2>
+        <p><strong>Type :</strong> ${photos[i].type}</p>
+        <p><strong>Constellation :</strong> ${photos[i].constellation}</p>
+        <p><strong>Processing :</strong> ${photos[i].processing}</p>`;
+
+      const largeImg = document.createElement('img');
+      largeImg.src = `images/${photos[i].file}`;
+      largeImg.alt = photos[i].title;
+
+      container.appendChild(info);
+      container.appendChild(largeImg);
+      overlay.appendChild(container);
+      overlay.style.visibility = 'visible';
+
+      // Flèches click
+      overlay.querySelector('#lb-prev').onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        showImage(currentIndex);
+      };
+      overlay.querySelector('#lb-next').onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % photos.length;
+        showImage(currentIndex);
+      };
+    }
+
+    showImage(currentIndex);
+
+    // Navigation clavier
+    const keyHandler = (e) => {
+      if (overlay.style.visibility === 'visible') {
+        if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+          showImage(currentIndex);
+        } else if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % photos.length;
+          showImage(currentIndex);
+        } else if (e.key === 'Escape') {
+          overlay.style.visibility = 'hidden';
+          overlay.innerHTML = '';
+        }
+      }
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    // Retirer le handler quand on ferme le lightbox
+    overlay.onclick = () => {
+      overlay.style.visibility = 'hidden';
+      overlay.innerHTML = '';
+      document.removeEventListener('keydown', keyHandler);
+    };
   });
 });
 
-// =============================
-// JSON-LD automatique pour Google
-// =============================
+// JSON-LD automatique
 const ld = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
