@@ -36,6 +36,7 @@ for (let i = 0; i < STAR_COUNT; i++) {
 // GALERIE
 // =============================
 const galleryContainer = document.querySelector('.gallery');
+
 const overlay = document.createElement('div');
 overlay.id = 'lightbox-overlay';
 overlay.style.position = 'fixed';
@@ -62,6 +63,7 @@ const sortedPhotos = photos.slice().sort((a,b)=> {
 });
 
 sortedPhotos.forEach((photo,index)=>{
+
   const figure = document.createElement('figure');
   figure.classList.add('photo');
 
@@ -82,11 +84,14 @@ sortedPhotos.forEach((photo,index)=>{
   figure.appendChild(caption);
   galleryContainer.appendChild(figure);
 
-  // LIGHTBOX
+  // =============================
+  // LIGHTBOX AVEC TRANSITION
+  // =============================
   img.addEventListener('click',()=>{
     let currentIndex=index;
 
     function showImage(i){
+
       overlay.innerHTML='';
 
       const arrows = document.createElement('div');
@@ -111,8 +116,8 @@ sortedPhotos.forEach((photo,index)=>{
         <p><strong>Constellation :</strong> ${sortedPhotos[i].constellation}</p>
         <p><strong>Processing :</strong> ${sortedPhotos[i].processing}</p>
         <p><strong>Temps de pause :</strong> ${sortedPhotos[i].exposure}</p>
-        <p><strong>Date de prise de vue :</strong> ${sortedPhotos[i].date}</p>
-        <p><strong>Problèmes rencontrés :</strong> ${sortedPhotos[i].issues}</p>
+        <p><strong>Date :</strong> ${sortedPhotos[i].date}</p>
+        <p><strong>Problèmes :</strong> ${sortedPhotos[i].issues}</p>
         <p><strong>Satisfaction :</strong></p>
         <div class="rating-bar">
           ${[...Array(10)].map((_,idx)=>{
@@ -121,7 +126,6 @@ sortedPhotos.forEach((photo,index)=>{
             return `<div class="rating-segment" style="background:${level<=sortedPhotos[i].rating?color:'#222'}"></div>`;
           }).join('')}
         </div>
-        <p><a href="${sortedPhotos[i].wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus sur Wikipedia</a></p>
       `;
 
       const largeImg = document.createElement('img');
@@ -133,23 +137,65 @@ sortedPhotos.forEach((photo,index)=>{
       container.appendChild(info);
       container.appendChild(largeImg);
       overlay.appendChild(container);
+
       overlay.style.visibility='visible';
 
-      overlay.querySelector('#lb-prev').onclick=(e)=>{ e.stopPropagation(); currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length; showImage(currentIndex); };
-      overlay.querySelector('#lb-next').onclick=(e)=>{ e.stopPropagation(); currentIndex=(currentIndex+1)%sortedPhotos.length; showImage(currentIndex); };
+      // 🔥 Déclenche animation fade + zoom
+      setTimeout(()=>{
+        largeImg.classList.add('show');
+      },10);
+
+      overlay.querySelector('#lb-prev').onclick=(e)=>{
+        e.stopPropagation();
+        currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length;
+        transitionImage(currentIndex);
+      };
+
+      overlay.querySelector('#lb-next').onclick=(e)=>{
+        e.stopPropagation();
+        currentIndex=(currentIndex+1)%sortedPhotos.length;
+        transitionImage(currentIndex);
+      };
+    }
+
+    function transitionImage(newIndex){
+      const currentImg = overlay.querySelector('img');
+
+      if(currentImg){
+        currentImg.classList.remove('show');
+
+        setTimeout(()=>{
+          showImage(newIndex);
+        },300);
+      }
     }
 
     showImage(currentIndex);
 
     const keyHandler=(e)=>{
       if(overlay.style.visibility==='visible'){
-        if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length; showImage(currentIndex);}
-        else if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%sortedPhotos.length; showImage(currentIndex);}
-        else if(e.key==='Escape'){overlay.style.visibility='hidden'; overlay.innerHTML=''; document.removeEventListener('keydown',keyHandler);}
+        if(e.key==='ArrowLeft'){
+          currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length;
+          transitionImage(currentIndex);
+        }
+        else if(e.key==='ArrowRight'){
+          currentIndex=(currentIndex+1)%sortedPhotos.length;
+          transitionImage(currentIndex);
+        }
+        else if(e.key==='Escape'){
+          overlay.style.visibility='hidden';
+          overlay.innerHTML='';
+          document.removeEventListener('keydown',keyHandler);
+        }
       }
     };
+
     document.addEventListener('keydown',keyHandler);
 
-    overlay.onclick=()=>{overlay.style.visibility='hidden'; overlay.innerHTML=''; document.removeEventListener('keydown',keyHandler);}
+    overlay.onclick=()=>{
+      overlay.style.visibility='hidden';
+      overlay.innerHTML='';
+      document.removeEventListener('keydown',keyHandler);
+    };
   });
 });

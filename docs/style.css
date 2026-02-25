@@ -75,7 +75,7 @@ h1 {
 
 .photo img {
   width: 100%;
-  max-width: 200px; /* plus petites images */
+  max-width: 500px; /* taille des vignettes */
   height: auto;
   border-radius: 10px;
   border: 2px solid #fff;
@@ -170,4 +170,19 @@ h1 {
 }
 #visitor-counter-container img {
   height: 25px;
+}
+
+/* ============================= */
+/* TRANSITION FADE + ZOOM LIGHTBOX */
+/* ============================= */
+
+#lightbox-overlay img {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+#lightbox-overlay img.show {
+  opacity: 1;
+  transform: scale(1);
 }
