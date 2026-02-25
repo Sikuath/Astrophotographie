@@ -63,6 +63,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  align-items: flex-start;
 }
 
 /* CHAQUE PHOTO */
@@ -73,7 +74,9 @@ h1 {
 }
 
 .photo img {
-  max-width: 300px;
+  width: 100%;
+  max-width: 200px; /* plus petites images */
+  height: auto;
   border-radius: 10px;
   border: 2px solid #fff;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -92,64 +95,65 @@ h1 {
 }
 
 /* ============================= */
-/* MINI-LIGHTBOX + NEON STYLE */
+/* LIGHTBOX SIMPLE AVEC CONTOUR BLEU */
 /* ============================= */
 #lightbox-overlay {
   display: none;
   position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.92);
+  inset: 0;
+  background: rgba(0,0,0,0.95);
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  cursor: pointer;
+  overflow: hidden;      /* IMPORTANT : supprime ascenseur */
+  padding: 60px;         /* espace pour contour bleu */
+  box-sizing: border-box;
 }
 
 #lightbox-overlay img {
-  max-width: 70vw;
-  max-height: 85vh;
-  border-radius: 8px;
-  box-shadow: 0 0 30px #1e90ff;
+  max-width: 90vw;       /* plus petite largeur */
+  max-height: 90vh;      /* plus petite hauteur */
+  border-radius: 12px;
+  box-shadow: 0 0 35px #1e90ff;
+  object-fit: contain;
 }
 
-/* Conteneur flèches */
+/* Flèches lightbox */
 .lb-arrows {
   position: absolute;
   top: 20px;
-  right: 20px;
-  font-size: 2.5em;
-  color: #1e90ff;
-  text-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff;
+  width: 100%;
   display: flex;
-  gap: 15px;
+  justify-content: space-between;
+  font-size: 2em;
+  color: #1e90ff;
   user-select: none;
+  pointer-events: auto;
 }
 
-.lb-arrows span:hover {
-  color: #00ffff;
-  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+.lb-arrows span {
   cursor: pointer;
+  padding: 0 20px;
 }
 
-/* Lien Wikipedia comme bouton */
-#lightbox-overlay a, .caption a {
-  display: inline-block;
+/* ============================= */
+/* BARRE HORIZONTALE SATISFACTION */
+/* ============================= */
+.rating-bar {
+  display: flex;
+  width: 100%;
+  max-width: 200px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
   margin-top: 5px;
-  padding: 5px 10px;
-  background: #1e90ff;
-  color: black !important;
-  font-weight: bold;
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff;
-  transition: all 0.3s ease;
 }
 
-#lightbox-overlay a:hover, .caption a:hover {
-  background: #00ffff;
-  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
-  color: black !important;
+.rating-segment {
+  flex: 1;
+  margin: 1px;
+  transition: background 0.3s;
 }
 
 /* ============================= */

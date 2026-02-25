@@ -1,8 +1,7 @@
 // =============================
-// FONCTIONS UTILITAIRES
+// UTILITAIRES
 // =============================
 function getRatingColor(rating) {
-  // 1 = rouge, 10 = vert, gradient intermédiaire
   const red = Math.round(255 - (rating - 1) * 25.5);
   const green = Math.round((rating - 1) * 25.5);
   return `rgb(${red},${green},0)`;
@@ -34,11 +33,9 @@ for (let i = 0; i < STAR_COUNT; i++) {
 }
 
 // =============================
-// GALERIE DYNAMIQUE
+// GALERIE
 // =============================
 const galleryContainer = document.querySelector('.gallery');
-
-// Lightbox unique
 const overlay = document.createElement('div');
 overlay.id = 'lightbox-overlay';
 overlay.style.position = 'fixed';
@@ -53,70 +50,62 @@ overlay.style.alignItems = 'center';
 overlay.style.zIndex = '1000';
 overlay.style.cursor = 'pointer';
 overlay.style.visibility = 'hidden';
+overlay.style.padding = '20px';
+overlay.style.boxSizing = 'border-box';
 document.body.appendChild(overlay);
 
-// =============================
-// Trier les photos par date décroissante (plus récentes en premier)
-const sortedPhotos = photos.slice().sort((a, b) => {
-  const dateA = a.date.split('/').reverse().join('-');
-  const dateB = b.date.split('/').reverse().join('-');
-  return new Date(dateB) - new Date(dateA);
+// Trier photos par date décroissante
+const sortedPhotos = photos.slice().sort((a,b)=> {
+  const dA = a.date.split('/').reverse().join('-');
+  const dB = b.date.split('/').reverse().join('-');
+  return new Date(dB) - new Date(dA);
 });
 
-// =============================
-// Boucle sur sortedPhotos pour créer la galerie
-sortedPhotos.forEach((photo, index) => {
+sortedPhotos.forEach((photo,index)=>{
   const figure = document.createElement('figure');
   figure.classList.add('photo');
 
   const img = document.createElement('img');
   img.src = `images/${photo.file}`;
-  img.loading = "lazy";
-  img.decoding = "async";
-  img.alt = `Astrophotographie de ${photo.title}, ${photo.type} dans la constellation du ${photo.constellation}, traitement ${photo.processing}`;
+  img.loading="lazy";
+  img.decoding="async";
+  img.alt=`Astrophotographie de ${photo.title}`;
 
   const caption = document.createElement('figcaption');
   caption.classList.add('caption');
-  caption.innerHTML = `
-    <strong>${photo.title}</strong><br>
+  caption.innerHTML = `<strong>${photo.title}</strong><br>
     ${photo.type} – Constellation du ${photo.constellation}<br>
     Traitement : ${photo.processing}<br>
-    <a href="${photo.wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus</a>
-  `;
+    <a href="${photo.wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus</a>`;
 
   figure.appendChild(img);
   figure.appendChild(caption);
   galleryContainer.appendChild(figure);
 
-  // =============================
-  // Lightbox avec flèches et clavier
-  img.addEventListener('click', () => {
-    let currentIndex = index;
+  // LIGHTBOX
+  img.addEventListener('click',()=>{
+    let currentIndex=index;
 
-    function showImage(i) {
-      overlay.innerHTML = '';
+    function showImage(i){
+      overlay.innerHTML='';
 
-      // Flèches
       const arrows = document.createElement('div');
       arrows.classList.add('lb-arrows');
-      arrows.innerHTML = `
-        <span id="lb-prev">&#8592;</span>
-        <span id="lb-next">&#8594;</span>
-      `;
+      arrows.innerHTML=`<span id="lb-prev">&#8592;</span><span id="lb-next">&#8594;</span>`;
       overlay.appendChild(arrows);
 
-      // Container image + infos
       const container = document.createElement('div');
-      container.style.display = 'flex';
-      container.style.gap = '40px';
-      container.style.alignItems = 'center';
-      container.style.maxWidth = '90%';
-      container.style.maxHeight = '90%';
+      container.style.display='flex';
+      container.style.gap='40px';
+      container.style.alignItems='center';
+      container.style.maxWidth='100%';
+      container.style.maxHeight='100%';
+      container.style.justifyContent='center';
 
       const info = document.createElement('div');
-      info.style.color = '#1e90ff';
-      info.style.maxWidth = '300px';
-      info.innerHTML = `
+      info.style.color='#1e90ff';
+      info.style.maxWidth='300px';
+      info.innerHTML=`
         <h2 style="margin-top:0;">${sortedPhotos[i].title}</h2>
         <p><strong>Type :</strong> ${sortedPhotos[i].type}</p>
         <p><strong>Constellation :</strong> ${sortedPhotos[i].constellation}</p>
@@ -124,71 +113,43 @@ sortedPhotos.forEach((photo, index) => {
         <p><strong>Temps de pause :</strong> ${sortedPhotos[i].exposure}</p>
         <p><strong>Date de prise de vue :</strong> ${sortedPhotos[i].date}</p>
         <p><strong>Problèmes rencontrés :</strong> ${sortedPhotos[i].issues}</p>
-        <p><strong>Satisfaction :</strong> <span style="color:${getRatingColor(sortedPhotos[i].rating)}">${sortedPhotos[i].rating}/10</span></p>
+        <p><strong>Satisfaction :</strong></p>
+        <div class="rating-bar">
+          ${[...Array(10)].map((_,idx)=>{
+            const level=idx+1;
+            const color=getRatingColor(level);
+            return `<div class="rating-segment" style="background:${level<=sortedPhotos[i].rating?color:'#222'}"></div>`;
+          }).join('')}
+        </div>
         <p><a href="${sortedPhotos[i].wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus sur Wikipedia</a></p>
       `;
 
       const largeImg = document.createElement('img');
       largeImg.src = `images/${sortedPhotos[i].file}`;
       largeImg.alt = sortedPhotos[i].title;
+      largeImg.style.borderRadius='10px';
+      largeImg.style.objectFit='contain';
 
       container.appendChild(info);
       container.appendChild(largeImg);
       overlay.appendChild(container);
-      overlay.style.visibility = 'visible';
+      overlay.style.visibility='visible';
 
-      // Flèches click
-      overlay.querySelector('#lb-prev').onclick = (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + sortedPhotos.length) % sortedPhotos.length;
-        showImage(currentIndex);
-      };
-      overlay.querySelector('#lb-next').onclick = (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % sortedPhotos.length;
-        showImage(currentIndex);
-      };
+      overlay.querySelector('#lb-prev').onclick=(e)=>{ e.stopPropagation(); currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length; showImage(currentIndex); };
+      overlay.querySelector('#lb-next').onclick=(e)=>{ e.stopPropagation(); currentIndex=(currentIndex+1)%sortedPhotos.length; showImage(currentIndex); };
     }
 
     showImage(currentIndex);
 
-    // Navigation clavier
-    const keyHandler = (e) => {
-      if (overlay.style.visibility === 'visible') {
-        if (e.key === 'ArrowLeft') {
-          currentIndex = (currentIndex - 1 + sortedPhotos.length) % sortedPhotos.length;
-          showImage(currentIndex);
-        } else if (e.key === 'ArrowRight') {
-          currentIndex = (currentIndex + 1) % sortedPhotos.length;
-          showImage(currentIndex);
-        } else if (e.key === 'Escape') {
-          overlay.style.visibility = 'hidden';
-          overlay.innerHTML = '';
-          document.removeEventListener('keydown', keyHandler);
-        }
+    const keyHandler=(e)=>{
+      if(overlay.style.visibility==='visible'){
+        if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length; showImage(currentIndex);}
+        else if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%sortedPhotos.length; showImage(currentIndex);}
+        else if(e.key==='Escape'){overlay.style.visibility='hidden'; overlay.innerHTML=''; document.removeEventListener('keydown',keyHandler);}
       }
     };
-    document.addEventListener('keydown', keyHandler);
+    document.addEventListener('keydown',keyHandler);
 
-    overlay.onclick = () => {
-      overlay.style.visibility = 'hidden';
-      overlay.innerHTML = '';
-      document.removeEventListener('keydown', keyHandler);
-    };
+    overlay.onclick=()=>{overlay.style.visibility='hidden'; overlay.innerHTML=''; document.removeEventListener('keydown',keyHandler);}
   });
 });
-
-// =============================
-// JSON-LD automatique pour Google
-const ld = {
-  "@context": "https://schema.org",
-  "@type": "ImageGallery",
-  "name": "Galerie Astrophotographie",
-  "description": "Galerie de photos du ciel profond : nébuleuses, galaxies et amas stellaires",
-  "url": "https://sikuath.github.io/Astrophotographie/",
-  "image": photos.map(p => `https://sikuath.github.io/Astrophotographie/images/${p.file}`)
-};
-const script = document.createElement('script');
-script.type = 'application/ld+json';
-script.textContent = JSON.stringify(ld, null, 2);
-document.head.appendChild(script);
