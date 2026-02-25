@@ -12,6 +12,7 @@ body {
   overflow: auto;
 }
 
+/* Conteneur pour étoiles */
 .stars {
   position: fixed;
   top:0; left:0;
@@ -21,6 +22,7 @@ body {
   overflow: hidden;
 }
 
+/* Chaque étoile */
 .star {
   position: absolute;
   border-radius: 50%;
@@ -55,6 +57,7 @@ h1 {
 
 /* ============================= */
 /* GRILLE DES IMAGES */
+/* ============================= */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -62,6 +65,7 @@ h1 {
   gap: 20px;
 }
 
+/* CHAQUE PHOTO */
 .photo {
   display: flex;
   flex-direction: column;
@@ -88,7 +92,8 @@ h1 {
 }
 
 /* ============================= */
-/* MINI-LIGHTBOX */
+/* MINI-LIGHTBOX + NEON STYLE */
+/* ============================= */
 #lightbox-overlay {
   display: none;
   position: fixed;
@@ -98,42 +103,58 @@ h1 {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  cursor: pointer;
 }
 
-/* Image dans lightbox */
 #lightbox-overlay img {
   max-width: 70vw;
   max-height: 85vh;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 0 30px #1e90ff;
 }
 
-/* Flèches Lightbox */
-#lightbox-overlay .lb-arrows {
+/* Conteneur flèches */
+.lb-arrows {
   position: absolute;
   top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-#lightbox-overlay .lb-arrows span {
-  cursor: pointer;
-  font-size: 2rem;
+  right: 20px;
+  font-size: 2.5em;
   color: #1e90ff;
+  text-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff;
+  display: flex;
+  gap: 15px;
   user-select: none;
-  transition: transform 0.2s, color 0.2s;
 }
 
-#lightbox-overlay .lb-arrows span:hover {
-  transform: scale(1.2);
+.lb-arrows span:hover {
   color: #00ffff;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  cursor: pointer;
+}
+
+/* Lien Wikipedia comme bouton */
+#lightbox-overlay a, .caption a {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 10px;
+  background: #1e90ff;
+  color: black !important;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff;
+  transition: all 0.3s ease;
+}
+
+#lightbox-overlay a:hover, .caption a:hover {
+  background: #00ffff;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  color: black !important;
 }
 
 /* ============================= */
-/* COMPTEUR OPTISTATS */
+/* COMPTEUR OPTISTATS EN BAS À GAUCHE */
+/* ============================= */
 #visitor-counter-container {
   position: fixed;
   bottom: 10px;

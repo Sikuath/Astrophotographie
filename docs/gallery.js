@@ -60,7 +60,12 @@ photos.forEach((photo, index) => {
 
   const caption = document.createElement('figcaption');
   caption.classList.add('caption');
-  caption.innerHTML = `<strong>${photo.title}</strong><br>${photo.type} – Constellation du ${photo.constellation}<br>Traitement : ${photo.processing}`;
+  caption.innerHTML = `
+    <strong>${photo.title}</strong><br>
+    ${photo.type} – Constellation du ${photo.constellation}<br>
+    Traitement : ${photo.processing}<br>
+    <a href="${photo.wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus</a>
+  `;
 
   figure.appendChild(img);
   figure.appendChild(caption);
@@ -95,7 +100,8 @@ photos.forEach((photo, index) => {
       info.innerHTML = `<h2 style="margin-top:0;">${photos[i].title}</h2>
         <p><strong>Type :</strong> ${photos[i].type}</p>
         <p><strong>Constellation :</strong> ${photos[i].constellation}</p>
-        <p><strong>Processing :</strong> ${photos[i].processing}</p>`;
+        <p><strong>Processing :</strong> ${photos[i].processing}</p>
+        <p><a href="${photos[i].wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus</a></p>`;
 
       const largeImg = document.createElement('img');
       largeImg.src = `images/${photos[i].file}`;
