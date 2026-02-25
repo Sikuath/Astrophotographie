@@ -62,16 +62,16 @@ const sortedPhotos = photos.slice().sort((a,b)=> {
   return new Date(dB) - new Date(dA);
 });
 
+// Création des vignettes
 sortedPhotos.forEach((photo,index)=>{
-
   const figure = document.createElement('figure');
   figure.classList.add('photo');
 
   const img = document.createElement('img');
   img.src = `images/${photo.file}`;
-  img.loading="lazy";
-  img.decoding="async";
-  img.alt=`Astrophotographie de ${photo.title}`;
+  img.loading = "lazy";
+  img.decoding = "async";
+  img.alt = `Astrophotographie de ${photo.title}`;
 
   const caption = document.createElement('figcaption');
   caption.classList.add('caption');
@@ -85,32 +85,34 @@ sortedPhotos.forEach((photo,index)=>{
   galleryContainer.appendChild(figure);
 
   // =============================
-  // LIGHTBOX AVEC TRANSITION
+  // LIGHTBOX
   // =============================
-  img.addEventListener('click',()=>{
-    let currentIndex=index;
+  img.addEventListener('click', ()=>{
+    let currentIndex = index;
 
     function showImage(i){
-
       overlay.innerHTML='';
 
+      // Flèches
       const arrows = document.createElement('div');
       arrows.classList.add('lb-arrows');
-      arrows.innerHTML=`<span id="lb-prev">&#8592;</span><span id="lb-next">&#8594;</span>`;
+      arrows.innerHTML = `<span id="lb-prev">&#8592;</span><span id="lb-next">&#8594;</span>`;
       overlay.appendChild(arrows);
 
+      // Container principal
       const container = document.createElement('div');
-      container.style.display='flex';
-      container.style.gap='40px';
-      container.style.alignItems='center';
-      container.style.maxWidth='100%';
-      container.style.maxHeight='100%';
-      container.style.justifyContent='center';
+      container.style.display = 'flex';
+      container.style.gap = '40px';
+      container.style.alignItems = 'center';
+      container.style.maxWidth = '100%';
+      container.style.maxHeight = '100%';
+      container.style.justifyContent = 'center';
 
+      // Infos
       const info = document.createElement('div');
-      info.style.color='#1e90ff';
-      info.style.maxWidth='300px';
-      info.innerHTML=`
+      info.style.color = '#1e90ff';
+      info.style.maxWidth = '300px';
+      info.innerHTML = `
         <h2 style="margin-top:0;">${sortedPhotos[i].title}</h2>
         <p><strong>Type :</strong> ${sortedPhotos[i].type}</p>
         <p><strong>Constellation :</strong> ${sortedPhotos[i].constellation}</p>
@@ -126,8 +128,10 @@ sortedPhotos.forEach((photo,index)=>{
             return `<div class="rating-segment" style="background:${level<=sortedPhotos[i].rating?color:'#222'}"></div>`;
           }).join('')}
         </div>
+        <p><a href="${sortedPhotos[i].wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus sur Wikipedia</a></p>
       `;
 
+      // Image
       const largeImg = document.createElement('img');
       largeImg.src = `images/${sortedPhotos[i].file}`;
       largeImg.alt = sortedPhotos[i].title;
@@ -137,20 +141,17 @@ sortedPhotos.forEach((photo,index)=>{
       container.appendChild(info);
       container.appendChild(largeImg);
       overlay.appendChild(container);
-
       overlay.style.visibility='visible';
 
-      // 🔥 Déclenche animation fade + zoom
-      setTimeout(()=>{
-        largeImg.classList.add('show');
-      },10);
+      // 🔥 fade + zoom
+      setTimeout(()=>{ largeImg.classList.add('show'); },10);
 
+      // Flèches click
       overlay.querySelector('#lb-prev').onclick=(e)=>{
         e.stopPropagation();
         currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length;
         transitionImage(currentIndex);
       };
-
       overlay.querySelector('#lb-next').onclick=(e)=>{
         e.stopPropagation();
         currentIndex=(currentIndex+1)%sortedPhotos.length;
@@ -160,36 +161,30 @@ sortedPhotos.forEach((photo,index)=>{
 
     function transitionImage(newIndex){
       const currentImg = overlay.querySelector('img');
-
       if(currentImg){
         currentImg.classList.remove('show');
-
-        setTimeout(()=>{
-          showImage(newIndex);
-        },300);
+        setTimeout(()=>{ showImage(newIndex); }, 300);
       }
     }
 
     showImage(currentIndex);
 
-    const keyHandler=(e)=>{
+    // Clavier
+    const keyHandler = (e)=>{
       if(overlay.style.visibility==='visible'){
         if(e.key==='ArrowLeft'){
           currentIndex=(currentIndex-1+sortedPhotos.length)%sortedPhotos.length;
           transitionImage(currentIndex);
-        }
-        else if(e.key==='ArrowRight'){
+        } else if(e.key==='ArrowRight'){
           currentIndex=(currentIndex+1)%sortedPhotos.length;
           transitionImage(currentIndex);
-        }
-        else if(e.key==='Escape'){
+        } else if(e.key==='Escape'){
           overlay.style.visibility='hidden';
           overlay.innerHTML='';
           document.removeEventListener('keydown',keyHandler);
         }
       }
     };
-
     document.addEventListener('keydown',keyHandler);
 
     overlay.onclick=()=>{
