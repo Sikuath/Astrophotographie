@@ -83,7 +83,7 @@ header p {
 }
 
 .photo {
-  width: 400px;          /* largeur vignette */
+  width: 400px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@ header p {
   width: 100%;
   max-width: 400px;
   border-radius: 10px;
-  border: 2px solid #1e90ff;  /* contour bleu complet */
+  border: 2px solid #1e90ff; /* contour bleu complet */
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -108,12 +108,12 @@ header p {
 .caption {
   margin-top: 5px;
   font-size: 14px;
-  color: #1e90ff;  /* texte bleu dans la galerie */
+  color: #1e90ff; /* texte bleu dans la galerie */
   text-align: center;
 }
 
 /* ============================= */
-/* LIGHTBOX */
+/* LIGHTBOX PREMIUM */
 /* ============================= */
 #lightbox-overlay {
   display: flex;
@@ -129,6 +129,8 @@ header p {
   visibility: hidden;
   padding: 20px;
   box-sizing: border-box;
+  backdrop-filter: blur(6px); /* flou léger fond */
+  -webkit-backdrop-filter: blur(6px);
 }
 
 #lightbox-overlay img {
@@ -137,16 +139,16 @@ header p {
   border-radius: 10px;
   object-fit: contain;
   opacity: 0;
-  transform: scale(0.97);
-  transition: opacity 0.9s ease, transform 1.5s ease;
+  transform: scale(0.95); /* commence plus petit */
 }
 
+/* Classe ajoutée par JS pour déclencher fade+zoom */
 #lightbox-overlay img.show {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Flèches */
+/* Flèches navigation */
 .lb-arrows {
   position: absolute;
   top: 10px;
