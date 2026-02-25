@@ -27,6 +27,7 @@ for (let i = 0; i < STAR_COUNT; i++) {
   star.style.height = size + 'px';
   star.style.background = colors[Math.floor(Math.random() * colors.length)];
   star.style.opacity = Math.random();
+  // randomiser durée et délai pour fade/zoom
   star.style.animationDuration = (Math.random() * 5 + 5) + 's';
   star.style.animationDelay = Math.random() * 5 + 's';
   starsContainer.appendChild(star);
@@ -116,7 +117,7 @@ sortedPhotos.forEach((photo,index)=>{
         <p><strong>Processing :</strong> ${sortedPhotos[i].processing}</p>
         <p><strong>Temps de pause :</strong> ${sortedPhotos[i].exposure}</p>
         <p><strong>Date de prise de vue :</strong> ${sortedPhotos[i].date}</p>
-        <p><strong>Commentaires :</strong> ${sortedPhotos[i].issues || 'Aucun'}</p>
+        <p><strong>Mon avis :</strong> ${sortedPhotos[i].issues || 'Aucun'}</p>
         <p><strong>Satisfaction :</strong></p>
         <div class="rating-bar">
           ${[...Array(10)].map((_,idx)=>{
@@ -134,8 +135,10 @@ sortedPhotos.forEach((photo,index)=>{
       largeImg.alt = sortedPhotos[i].title;
       largeImg.style.opacity = 0;
       largeImg.style.transform = 'scale(0.95)';
-      const randDuration = (Math.random() * 1.7).toFixed(2);
+
+      const randDuration = (Math.random() * 1.7).toFixed(2); // zoom aléatoire 0 à 1.7s
       const randDelay = (Math.random() * 1.7).toFixed(2);
+
       largeImg.style.transition = `opacity ${randDuration}s ease ${randDelay}s, transform ${randDuration}s ease ${randDelay}s`;
 
       container.appendChild(info);
