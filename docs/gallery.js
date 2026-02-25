@@ -108,7 +108,7 @@ sortedPhotos.forEach((photo,index)=>{
 
       // Infos à gauche
       const info = document.createElement('div');
-      info.classList.add('lightbox-info');
+      info.classList.add('lightbox-info'); // class pour le style CSS
       info.innerHTML=`
         <h2>${sortedPhotos[i].title}</h2>
         <p><strong>Type :</strong> ${sortedPhotos[i].type}</p>
@@ -116,7 +116,7 @@ sortedPhotos.forEach((photo,index)=>{
         <p><strong>Processing :</strong> ${sortedPhotos[i].processing}</p>
         <p><strong>Temps de pause :</strong> ${sortedPhotos[i].exposure}</p>
         <p><strong>Date de prise de vue :</strong> ${sortedPhotos[i].date}</p>
-        <p><strong>Problèmes rencontrés :</strong> ${sortedPhotos[i].issues || 'Aucun'}</p>
+        <p><strong>Mon retour :</strong> ${sortedPhotos[i].issues || 'Aucun'}</p>
         <p><strong>Satisfaction :</strong></p>
         <div class="rating-bar">
           ${[...Array(10)].map((_,idx)=>{
@@ -135,9 +135,9 @@ sortedPhotos.forEach((photo,index)=>{
       largeImg.classList.add('show');
 
       // Zoom aléatoire lent
-      const zoomFactor = 1 + Math.random()*0.02; // 1 -> 1.02
-      const zoomDuration = 5 + Math.random()*10; // 5->15 sec
-      largeImg.style.transform = `scale(${0.95})`;
+      const zoomFactor = 1 + Math.random()*0.02;
+      const zoomDuration = 5 + Math.random()*10;
+      largeImg.style.transform = `scale(0.95)`;
       largeImg.style.transition = `transform ${zoomDuration}s ease-in-out, opacity 0.7s ease`;
       setTimeout(()=>{ largeImg.style.transform = `scale(${zoomFactor})`; },50);
 
