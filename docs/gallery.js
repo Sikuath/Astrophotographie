@@ -78,7 +78,7 @@ sortedPhotos.forEach((photo,index)=>{
   caption.innerHTML = `<strong>${photo.title}</strong><br>
     ${photo.type} – Constellation du ${photo.constellation}<br>
     Traitement : ${photo.processing}<br>
-    <a href="${photo.wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus</a>`;
+    <a href="${photo.wiki}" target="_blank">En savoir plus</a>`;
 
   figure.appendChild(img);
   figure.appendChild(caption);
@@ -108,8 +108,7 @@ sortedPhotos.forEach((photo,index)=>{
 
       // Infos à gauche
       const info = document.createElement('div');
-      info.style.color='#00ffff';
-      info.style.maxWidth='300px';
+      info.classList.add('lightbox-info');
       info.innerHTML=`
         <h2>${sortedPhotos[i].title}</h2>
         <p><strong>Type :</strong> ${sortedPhotos[i].type}</p>
@@ -133,7 +132,14 @@ sortedPhotos.forEach((photo,index)=>{
       const largeImg = document.createElement('img');
       largeImg.src = `images/${sortedPhotos[i].file}`;
       largeImg.alt = sortedPhotos[i].title;
-      largeImg.classList.add('show'); // fade + zoom via CSS
+      largeImg.classList.add('show');
+
+      // Zoom aléatoire lent
+      const zoomFactor = 1 + Math.random()*0.02; // 1 -> 1.02
+      const zoomDuration = 5 + Math.random()*10; // 5->15 sec
+      largeImg.style.transform = `scale(${0.95})`;
+      largeImg.style.transition = `transform ${zoomDuration}s ease-in-out, opacity 0.7s ease`;
+      setTimeout(()=>{ largeImg.style.transform = `scale(${zoomFactor})`; },50);
 
       container.appendChild(info);
       container.appendChild(largeImg);
