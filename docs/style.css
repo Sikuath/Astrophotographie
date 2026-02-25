@@ -13,6 +13,42 @@ body {
 }
 
 /* ============================= */
+/* TITRE FIXE EN HAUT DE PAGE */
+/* ============================= */
+header {
+  position: sticky;
+  top: 0;
+  background: black;
+  z-index: 100;
+  padding: 20px 0;
+}
+
+header h1 {
+  color: #1e90ff;
+  font-size: 3em;
+  margin: 0;
+  text-shadow: 0 0 5px #1e90ff, 0 0 10px #1e90ff, 0 0 20px #1e90ff;
+  animation: glow 2s ease-in-out infinite, floatTitle 3s ease-in-out infinite;
+}
+
+header p {
+  margin: 0;
+  padding: 0 10px;
+  font-size: 1.2em;
+  color: #add8e6;
+}
+
+@keyframes glow {
+  0%,100% { text-shadow:0 0 5px #1e90ff,0 0 10px #1e90ff,0 0 20px #1e90ff; }
+  50% { text-shadow:0 0 20px #1e90ff,0 0 40px #1e90ff,0 0 60px #1e90ff; }
+}
+
+@keyframes floatTitle {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ============================= */
 /* FOND ÉTOILES COSMOS */
 /* ============================= */
 .stars {
@@ -37,7 +73,7 @@ body {
 }
 
 /* ============================= */
-/* GALERIE VIGNETTES avec fond bleu marine + glow identique lightbox */
+/* GALERIE VIGNETTES */
 /* ============================= */
 .gallery {
   display: flex;
@@ -73,9 +109,9 @@ body {
   margin-top: 5px;
   padding: 8px;
   font-size: 14px;
-  color: #add8e6; /* texte harmonisé avec lightbox */
+  color: #add8e6;
   text-align: left;
-  background: rgba(0,0,50,0.6); /* fond bleu marine translucide identique lightbox */
+  background: rgba(0,0,50,0.6);
   border-radius: 8px;
   box-shadow: 0 0 10px #1e90ff;
   text-shadow: 0 0 3px #1e90ff;
@@ -98,7 +134,7 @@ body {
 }
 
 /* ============================= */
-/* LIGHTBOX */
+/* LIGHTBOX PREMIUM */
 #lightbox-overlay {
   display: flex;
   justify-content: center;
@@ -124,7 +160,6 @@ body {
   object-fit: contain;
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 #lightbox-overlay img.show {
@@ -150,18 +185,20 @@ body {
 }
 
 /* ============================= */
-/* INFO LIGHTBOX COMME VIGNETTES */
+/* INFO LIGHTBOX */
 .lightbox-info {
   text-align: left;
   max-width: 300px;
-  padding: 8px;
-  font-size: 14px;
   background: rgba(0,0,50,0.6);
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 0 10px #1e90ff;
-  text-shadow: 0 0 3px #1e90ff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: #add8e6;
+}
+
+.lightbox-info:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #1e90ff, 0 0 40px #00ffff;
 }
 
 .lightbox-info h2 {
@@ -179,12 +216,12 @@ body {
 .lightbox-info a {
   color: #00ffff;
   text-decoration: underline;
-  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  text-shadow: 0 0 5px #00ffff,0 0 10px #00ffff;
   transition: text-shadow 0.3s;
 }
 
 .lightbox-info a:hover {
-  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  text-shadow: 0 0 10px #00ffff,0 0 20px #00ffff,0 0 30px #00ffff;
 }
 
 /* ============================= */
