@@ -1,4 +1,14 @@
 // =============================
+// FONCTIONS UTILITAIRES
+// =============================
+function getRatingColor(rating) {
+  // 1 = rouge, 10 = vert, gradient intermédiaire
+  const red = Math.round(255 - (rating - 1) * 25.5);
+  const green = Math.round((rating - 1) * 25.5);
+  return `rgb(${red},${green},0)`;
+}
+
+// =============================
 // FOND ÉTOILES
 // =============================
 const starsContainer = document.createElement('div');
@@ -46,9 +56,16 @@ overlay.style.visibility = 'hidden';
 document.body.appendChild(overlay);
 
 // =============================
-// Création de la galerie
+// Trier les photos par date décroissante (plus récentes en premier)
+const sortedPhotos = photos.slice().sort((a, b) => {
+  const dateA = a.date.split('/').reverse().join('-');
+  const dateB = b.date.split('/').reverse().join('-');
+  return new Date(dateB) - new Date(dateA);
+});
+
 // =============================
-photos.forEach((photo, index) => {
+// Boucle sur sortedPhotos pour créer la galerie
+sortedPhotos.forEach((photo, index) => {
   const figure = document.createElement('figure');
   figure.classList.add('photo');
 
@@ -71,6 +88,8 @@ photos.forEach((photo, index) => {
   figure.appendChild(caption);
   galleryContainer.appendChild(figure);
 
+  // =============================
+  // Lightbox avec flèches et clavier
   img.addEventListener('click', () => {
     let currentIndex = index;
 
@@ -97,15 +116,21 @@ photos.forEach((photo, index) => {
       const info = document.createElement('div');
       info.style.color = '#1e90ff';
       info.style.maxWidth = '300px';
-      info.innerHTML = `<h2 style="margin-top:0;">${photos[i].title}</h2>
-        <p><strong>Type :</strong> ${photos[i].type}</p>
-        <p><strong>Constellation :</strong> ${photos[i].constellation}</p>
-        <p><strong>Processing :</strong> ${photos[i].processing}</p>
-        <p><a href="${photos[i].wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus</a></p>`;
+      info.innerHTML = `
+        <h2 style="margin-top:0;">${sortedPhotos[i].title}</h2>
+        <p><strong>Type :</strong> ${sortedPhotos[i].type}</p>
+        <p><strong>Constellation :</strong> ${sortedPhotos[i].constellation}</p>
+        <p><strong>Processing :</strong> ${sortedPhotos[i].processing}</p>
+        <p><strong>Temps de pause :</strong> ${sortedPhotos[i].exposure}</p>
+        <p><strong>Date de prise de vue :</strong> ${sortedPhotos[i].date}</p>
+        <p><strong>Problèmes rencontrés :</strong> ${sortedPhotos[i].issues}</p>
+        <p><strong>Satisfaction :</strong> <span style="color:${getRatingColor(sortedPhotos[i].rating)}">${sortedPhotos[i].rating}/10</span></p>
+        <p><a href="${sortedPhotos[i].wiki}" target="_blank" style="color:#00ffff;text-decoration:underline;">En savoir plus sur Wikipedia</a></p>
+      `;
 
       const largeImg = document.createElement('img');
-      largeImg.src = `images/${photos[i].file}`;
-      largeImg.alt = photos[i].title;
+      largeImg.src = `images/${sortedPhotos[i].file}`;
+      largeImg.alt = sortedPhotos[i].title;
 
       container.appendChild(info);
       container.appendChild(largeImg);
@@ -115,12 +140,12 @@ photos.forEach((photo, index) => {
       // Flèches click
       overlay.querySelector('#lb-prev').onclick = (e) => {
         e.stopPropagation();
-        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        currentIndex = (currentIndex - 1 + sortedPhotos.length) % sortedPhotos.length;
         showImage(currentIndex);
       };
       overlay.querySelector('#lb-next').onclick = (e) => {
         e.stopPropagation();
-        currentIndex = (currentIndex + 1) % photos.length;
+        currentIndex = (currentIndex + 1) % sortedPhotos.length;
         showImage(currentIndex);
       };
     }
@@ -131,20 +156,20 @@ photos.forEach((photo, index) => {
     const keyHandler = (e) => {
       if (overlay.style.visibility === 'visible') {
         if (e.key === 'ArrowLeft') {
-          currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+          currentIndex = (currentIndex - 1 + sortedPhotos.length) % sortedPhotos.length;
           showImage(currentIndex);
         } else if (e.key === 'ArrowRight') {
-          currentIndex = (currentIndex + 1) % photos.length;
+          currentIndex = (currentIndex + 1) % sortedPhotos.length;
           showImage(currentIndex);
         } else if (e.key === 'Escape') {
           overlay.style.visibility = 'hidden';
           overlay.innerHTML = '';
+          document.removeEventListener('keydown', keyHandler);
         }
       }
     };
     document.addEventListener('keydown', keyHandler);
 
-    // Retirer le handler quand on ferme le lightbox
     overlay.onclick = () => {
       overlay.style.visibility = 'hidden';
       overlay.innerHTML = '';
@@ -153,7 +178,8 @@ photos.forEach((photo, index) => {
   });
 });
 
-// JSON-LD automatique
+// =============================
+// JSON-LD automatique pour Google
 const ld = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
