@@ -108,7 +108,7 @@ sortedPhotos.forEach((photo,index)=>{
 
       // Infos à gauche
       const info = document.createElement('div');
-      info.classList.add('lightbox-info'); // class pour le style CSS
+      info.classList.add('lightbox-info');
       info.innerHTML=`
         <h2>${sortedPhotos[i].title}</h2>
         <p><strong>Type :</strong> ${sortedPhotos[i].type}</p>
@@ -132,14 +132,7 @@ sortedPhotos.forEach((photo,index)=>{
       const largeImg = document.createElement('img');
       largeImg.src = `images/${sortedPhotos[i].file}`;
       largeImg.alt = sortedPhotos[i].title;
-      largeImg.classList.add('show');
-
-      // Zoom aléatoire lent
-      const zoomFactor = 1 + Math.random()*0.02;
-      const zoomDuration = 5 + Math.random()*10;
-      largeImg.style.transform = `scale(0.95)`;
-      largeImg.style.transition = `transform ${zoomDuration}s ease-in-out, opacity 0.7s ease`;
-      setTimeout(()=>{ largeImg.style.transform = `scale(${zoomFactor})`; },50);
+      largeImg.classList.add('show'); // fade + zoom via CSS
 
       container.appendChild(info);
       container.appendChild(largeImg);
