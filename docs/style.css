@@ -38,6 +38,30 @@ header p {
   color: #add8e6;
 }
 
+/* ============================= */
+/* SWITCH LANGUE (NOUVEAU) */
+/* ============================= */
+.lang-switch {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.lang-switch span {
+  margin-left: 8px;
+  transition: transform 0.2s ease, text-shadow 0.3s ease;
+}
+
+.lang-switch span:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 8px #1e90ff, 0 0 15px #00ffff;
+}
+
+/* ============================= */
+/* ANIMATIONS TITRE */
+/* ============================= */
 @keyframes glow {
   0%,100% { text-shadow:0 0 5px #1e90ff,0 0 10px #1e90ff,0 0 20px #1e90ff; }
   50% { text-shadow:0 0 20px #1e90ff,0 0 40px #1e90ff,0 0 60px #1e90ff; }
@@ -135,6 +159,7 @@ header p {
 
 /* ============================= */
 /* LIGHTBOX PREMIUM */
+/* ============================= */
 #lightbox-overlay {
   display: flex;
   justify-content: center;
@@ -187,6 +212,7 @@ header p {
 
 /* ============================= */
 /* INFO LIGHTBOX */
+/* ============================= */
 .lightbox-info {
   text-align: left;
   max-width: 300px;
@@ -227,6 +253,7 @@ header p {
 
 /* ============================= */
 /* BARRE DE SATISFACTION */
+/* ============================= */
 .rating-bar {
   display: flex;
   height: 15px;
@@ -247,6 +274,7 @@ header p {
 
 /* ============================= */
 /* COMPTEUR OPTISTATS */
+/* ============================= */
 #visitor-counter-container {
   position: fixed;
   bottom: 10px;
@@ -263,6 +291,7 @@ header p {
 
 /* ============================= */
 /* LIGHTBOX MOBILE */
+/* ============================= */
 @media (max-width: 768px) {
   #lightbox-overlay {
     padding: 10px;

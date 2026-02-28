@@ -2,49 +2,46 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-
-  <!-- Responsive mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO principal -->
+  <!-- SEO -->
   <title>Astrophotographie – Galerie de photos du ciel profond</title>
   <meta name="description" content="Galerie d’astrophotographie : nébuleuses, galaxies et ciel profond capturés depuis la France. Photos en haute résolution et traitement détaillé.">
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://sikuath.github.io/Astrophotographie/">
-
-  <!-- Sitemap -->
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Galerie Astrophotographie">
-  <meta property="og:description" content="Découvrez mes photos de nébuleuses, galaxies et objets du ciel profond.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sikuath.github.io/Astrophotographie/">
-  <meta property="og:image" content="https://sikuath.github.io/Astrophotographie/preview.jpg">
-
+  <!-- Style -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <header>
-    <h1>Galerie d’Astrophotographie</h1>
-    <p>Photos du ciel profond : nébuleuses, galaxies et amas stellaires</p>
+    <h1 id="page-title">Galerie d’Astrophotographie</h1>
+    <p id="page-subtitle">Photos du ciel profond : nébuleuses, galaxies et amas stellaires</p>
+
+    <!-- Language switch -->
+    <div class="lang-switch">
+      <button data-lang="fr">🇫🇷 Français</button>
+      <button data-lang="en">🇬🇧 English</button>
+    </div>
   </header>
 
   <main>
     <div class="gallery"></div>
   </main>
 
+  <!-- Lightbox overlay -->
+  <div id="lightbox-overlay"></div>
+
+  <!-- Scripts -->
   <script src="photos.js"></script>
+  <script src="langue.js"></script>
   <script src="gallery.js"></script>
 
+  <!-- Visitor counter disabled for local -->
+  
   <footer>
     <div id="visitor-counter-container">
       <div id="sfcpybja1k1yt82cn7zyk7k47lagcbncr3q"></div>
-      <script
-        src="https://counter1.optistats.ovh/private/counter.js?c=pybja1k1yt82cn7zyk7k47lagcbncr3q&down=async"
-        async></script>
+      <script src="https://counter1.optistats.ovh/private/counter.js?c=pybja1k1yt82cn7zyk7k47lagcbncr3q&down=async" async></script>
       <noscript>
         <a href="https://www.compteurdevisite.com">
           <img src="https://counter1.optistats.ovh/private/compteurdevisite.php?c=pybja1k1yt82cn7zyk7k47lagcbncr3q"
@@ -53,6 +50,6 @@
       </noscript>
     </div>
   </footer>
-
+  
 </body>
 </html>
