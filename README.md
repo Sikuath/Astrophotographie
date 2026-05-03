@@ -98,3 +98,18 @@ git push
 2. Sur ton site GitHub Pages, les nouvelles images apparaissent automatiquement.
 
 ---
+# Astrophotographie
+
+Site personnel d’astrophotographie présentant mes images du ciel profond et du ciel nocturne.
+
+## License
+
+### Code
+The code of this project is licensed under the MIT License.
+
+### Images
+All astrophotography images are licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
+
+You are free to share the images with proper attribution, but you may not use them for commercial purposes or modify them.
+
+© 2026 Sikuath
