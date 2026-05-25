@@ -133,6 +133,21 @@ const photos = [
       en: "Dew issues! I struggled a lot to salvage something. Image is too red."
     },
     rating: 1
+  },
+  {
+    file: "M101_SHO.jpg",
+    title: { fr: "M101", en: "M101" },
+    type: { fr: "Galaxie spirale", en: "Spiral Galaxy" },
+    constellation: { fr: "La Grande Ourse", en: "Ursa Major" },
+    processing: { fr: "SHO", en: "SHO" },
+    wiki: "https://fr.wikipedia.org/wiki/M101_(galaxie)",
+    exposure: "4h 30min",
+    date: "23/05/2026",
+    issues: {
+      fr: "Je n'ai pas fait suffisamment de poses en OIII. On apprend, tout doucement. Traitement long !",
+      en: "I didn’t take enough OIII exposures. We’re learning slowly. Long processing!."
+    },
+    rating: 6
   }
 ];
 
