@@ -139,7 +139,7 @@ const photos = [
     title: { fr: "M101", en: "M101" },
     type: { fr: "Galaxie spirale", en: "Spiral Galaxy" },
     constellation: { fr: "La Grande Ourse", en: "Ursa Major" },
-    processing: { fr: "SHO", en: "SHO" },
+    processing: { fr: "SHO (Palette Hubble)", en: "SHO (Hubble Palette)" },
     wiki: "https://fr.wikipedia.org/wiki/M101_(galaxie)",
     exposure: "4h 30min",
     date: "23/05/2026",
@@ -148,6 +148,21 @@ const photos = [
       en: "I didn’t take enough OIII exposures. We’re learning slowly. Long processing!."
     },
     rating: 6
+  },
+{
+    file: "NGC6871_SHO.jpg",
+    title: { fr: "NGC 6871", en: "NGC 6871" },
+    type: { fr: "Amas ouvert", en: "Open Cluster" },
+    constellation: { fr: "Constellation du Cygne", en: "Constellation of Cygnus" },
+    processing: { fr: "SHO (Palette Foraxx)", en: "SHO (Foraxx Palette)" },
+    wiki: "https://fr.wikipedia.org/wiki/NGC_6871",
+    exposure: "4h 9min",
+    date: "13/06/2026",
+    issues: {
+      fr: "Nuit sans lune mais courte. J'ai fabriqué un script pour tester differentes palettes en SHO. La palette Foraxx rend bien.",
+      en: "Moonless but short night. I created a script to test different palettes in SHO. The Foraxx palette looks good."
+    },
+    rating: 9
   }
 ];
 
