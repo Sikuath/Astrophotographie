@@ -37,14 +37,23 @@ Chaque photo est un objet dans le tableau `photos` avec ces propriétés :
 
 Exemple d’objet à ajouter :
 
-```js
+```
 {
-  file: "nouvelle_photo.jpg",
-  title: "NGC 7000 – Nébuleuse de l’Amérique du Nord",
-  type: "Nébuleuse en émission",
-  constellation: "Cygne",
-  processing: "RGB"
-}
+    file: "NGC6871_SHO.jpg",
+    title: { fr: "NGC 6871", en: "NGC 6871" },
+    type: { fr: "Amas ouvert", en: "Open Cluster" },
+    constellation: { fr: "Constellation du Cygne", en: "Constellation of Cygnus" },
+    processing: { fr: "SHO (Palette Foraxx)", en: "SHO (Foraxx Palette)" },
+    wiki: "https://fr.wikipedia.org/wiki/NGC_6871",
+    exposure: "4h 9min",
+    date: "13/06/2026",
+    issues: {
+      fr: "Nuit sans lune mais courte. J'ai fabriqué un script pour tester differentes palettes en SHO. La palette Foraxx rend bien.",
+      en: "Moonless but short night. I created a script to test different palettes in SHO. The Foraxx palette looks good."
+    },
+    rating: 9
+  }
+
 ```
 
 ⚠️ Ajoute le nouvel objet **à la fin du tableau `photos`**.
