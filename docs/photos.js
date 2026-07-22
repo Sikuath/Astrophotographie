@@ -163,6 +163,21 @@ const photos = [
       en: "Moonless but short night. I created a script to test different palettes in SHO. The Foraxx palette looks good."
     },
     rating: 9
+  },
+{
+    file: "NGC6871_SHO_lunette.jpg",
+    title: { fr: "NGC 6871", en: "NGC 6871" },
+    type: { fr: "Amas ouvert", en: "Open Cluster" },
+    constellation: { fr: "Constellation du Cygne", en: "Constellation of Cygnus" },
+    processing: { fr: "SHO ()", en: "SHO (Foraxx Palette)" },
+    wiki: "https://fr.wikipedia.org/wiki/NGC_6871",
+    exposure: "4h 15min",
+    date: "09/07/2026",
+    issues: {
+      fr: "Premier test de la lunette Evolux 62ED. Palette SHO custom.",
+      en: "First test of the Evolux 62ED refractor. Custom SHO palette"
+    },
+    rating: 9
   }
 ];
 
